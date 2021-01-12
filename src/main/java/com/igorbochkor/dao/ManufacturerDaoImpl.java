@@ -5,6 +5,7 @@ import com.igorbochkor.lib.Dao;
 import com.igorbochkor.model.Manufacturer;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
@@ -23,14 +24,17 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
-        get(manufacturer.getId()).get().setName(manufacturer.getName());
-        get(manufacturer.getId()).get().setCountry(manufacturer.getCountry());
+        int updateIndex = IntStream.range(0, Storage.manufacturers.size())
+                .filter(m -> Storage.manufacturers.get(m).getId().equals(manufacturer.getId()))
+                .findFirst()
+                .getAsInt();
+        Storage.manufacturers.set(updateIndex, manufacturer);
         return manufacturer;
     }
 
     @Override
     public boolean delete(Long id) {
-        return Storage.manufacturers.remove(get(id).get());
+        return Storage.manufacturers.removeIf(m -> m.getId().equals(id));
     }
 
     @Override
