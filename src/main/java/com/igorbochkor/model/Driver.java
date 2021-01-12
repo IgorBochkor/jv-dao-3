@@ -1,7 +1,9 @@
 package com.igorbochkor.model;
 
+import java.util.Objects;
+
 public class Driver {
-    private long id;
+    private Long id;
     private String name;
     private String licenceNumber;
 
@@ -10,11 +12,11 @@ public class Driver {
         this.licenceNumber = licenceNumber;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -32,5 +34,32 @@ public class Driver {
 
     public void setLicenceNumber(String licenceNumber) {
         this.licenceNumber = licenceNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Driver driver = (Driver) o;
+        return Objects.equals(name, driver.name)
+                && Objects.equals(licenceNumber, driver.licenceNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, licenceNumber);
+    }
+
+    @Override
+    public String toString() {
+        return "Driver{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", licenceNumber='" + licenceNumber + '\''
+                + '}';
     }
 }
