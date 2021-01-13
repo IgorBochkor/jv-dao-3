@@ -1,5 +1,6 @@
-package com.igorbochkor.dao;
+package com.igorbochkor.dao.impl;
 
+import com.igorbochkor.dao.ManufacturerDao;
 import com.igorbochkor.db.Storage;
 import com.igorbochkor.lib.Dao;
 import com.igorbochkor.model.Manufacturer;
@@ -24,11 +25,9 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
-        int updateIndex = IntStream.range(0, Storage.manufacturers.size())
+        IntStream.range(0, Storage.manufacturers.size())
                 .filter(m -> Storage.manufacturers.get(m).getId().equals(manufacturer.getId()))
-                .findFirst()
-                .getAsInt();
-        Storage.manufacturers.set(updateIndex, manufacturer);
+                .forEach(i -> Storage.manufacturers.set(i, manufacturer));
         return manufacturer;
     }
 

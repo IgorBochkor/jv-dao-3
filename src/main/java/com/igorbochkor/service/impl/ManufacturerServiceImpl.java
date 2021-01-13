@@ -1,9 +1,10 @@
-package com.igorbochkor.service;
+package com.igorbochkor.service.impl;
 
 import com.igorbochkor.dao.ManufacturerDao;
 import com.igorbochkor.lib.Inject;
 import com.igorbochkor.lib.Service;
 import com.igorbochkor.model.Manufacturer;
+import com.igorbochkor.service.ManufacturerService;
 import java.util.List;
 
 @Service
