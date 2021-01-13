@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 @Dao
-public class DriverCarImpl implements DriverDao {
+public class DriverDaoImpl implements DriverDao {
     @Override
     public Driver create(Driver driver) {
         Storage.addDriver(driver);
