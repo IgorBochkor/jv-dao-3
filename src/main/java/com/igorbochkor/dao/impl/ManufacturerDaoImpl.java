@@ -2,13 +2,11 @@ package com.igorbochkor.dao.impl;
 
 import com.igorbochkor.dao.ManufacturerDao;
 import com.igorbochkor.db.Storage;
-import com.igorbochkor.lib.Dao;
 import com.igorbochkor.model.Manufacturer;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-@Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
