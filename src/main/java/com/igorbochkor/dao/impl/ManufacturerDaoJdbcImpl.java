@@ -19,16 +19,16 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
 
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
-        String query = "INSERT INTO manufactures (name, country) VALUE (?, ?)";
+        String createQuery = "INSERT INTO manufactures (name, country) VALUE (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement
-                    = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                    = connection.prepareStatement(createQuery, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, manufacturer.getName());
             statement.setString(2, manufacturer.getCountry());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
-                manufacturer.setId(resultSet.getLong(1));
+                manufacturer.setId(resultSet.getObject(1, Long.class));
             }
             statement.close();
             resultSet.close();
@@ -41,9 +41,10 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
     @Override
     public Optional<Manufacturer> get(Long manufacturerId) {
         Manufacturer manufacturer = null;
-        String query = "SELECT * FROM manufactures WHERE manufacture_id = ? AND deleted = false";
+        String getByIdQuery = "SELECT * FROM manufactures "
+                + "WHERE manufacture_id = ? AND deleted = false";
         try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(getByIdQuery);
             statement.setLong(1, manufacturerId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -60,10 +61,10 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
-        String query = "UPDATE manufactures SET name = ?, country = ? "
+        String updateByManufacturerQuery = "UPDATE manufactures SET name = ?, country = ? "
                 + "WHERE manufacture_id = ? AND deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(updateByManufacturerQuery);
             statement.setString(1, manufacturer.getName());
             statement.setString(2, manufacturer.getCountry());
             statement.setLong(3, manufacturer.getId());
@@ -78,9 +79,9 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
 
     @Override
     public boolean delete(Long manufacturerId) {
-        String query = "UPDATE manufactures SET deleted = TRUE WHERE manufacture_id = ?";
+        String deleteByIdQuery = "UPDATE manufactures SET deleted = TRUE WHERE manufacture_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(deleteByIdQuery);
             statement.setLong(1, manufacturerId);
             int updateRows = statement.executeUpdate();
             statement.close();
@@ -94,9 +95,9 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
     @Override
     public List<Manufacturer> getAllManufactures() {
         List<Manufacturer> listManufacture = new ArrayList<>();
-        String query = "SELECT * FROM manufactures WHERE deleted = false";
+        String getAllManufacturersQuery = "SELECT * FROM manufactures WHERE deleted = false";
         try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(getAllManufacturersQuery);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 listManufacture.add(getManufacturer(resultSet));
