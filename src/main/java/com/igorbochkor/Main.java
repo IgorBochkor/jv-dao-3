@@ -16,7 +16,7 @@ public class Main {
         System.out.println(manufacturerService.get(FIRST_INDEX));
         System.out.println(manufacturerService.getAll());
         Manufacturer manufacturerVolvo = new Manufacturer("Volvo", "Sweden");
-        manufacturerService.create(manufacturerVolvo);
+        //manufacturerService.create(manufacturerVolvo);
         manufacturerVolvo.setCountry("Italy");
         manufacturerVolvo.setId(THIRD_INDEX);
         manufacturerService.update(manufacturerVolvo);
