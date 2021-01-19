@@ -86,7 +86,7 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
     }
 
     @Override
-    public List<Manufacturer> getAllManufactures() {
+    public List<Manufacturer> getAll() {
         List<Manufacturer> listManufacture = new ArrayList<>();
         String getAllManufacturersQuery = "SELECT * FROM manufactures WHERE deleted = false";
         try (Connection connection = ConnectionUtil.getConnection(); PreparedStatement statement

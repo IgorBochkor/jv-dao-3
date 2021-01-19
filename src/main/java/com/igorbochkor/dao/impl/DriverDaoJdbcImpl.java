@@ -84,7 +84,7 @@ public class DriverDaoJdbcImpl implements DriverDao {
     }
 
     @Override
-    public List<Driver> getAllDrivers() {
+    public List<Driver> getAll() {
         List<Driver> drivers = new ArrayList<>();
         String getAllDriversQuery = "SELECT * FROM drivers WHERE deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection(); PreparedStatement statement
