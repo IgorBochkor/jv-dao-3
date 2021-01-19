@@ -151,11 +151,11 @@ public class CarDaoJdbcImpl implements CarDao {
             ResultSet resultSet = statement.executeQuery();
             List<Driver> driverList = new ArrayList<>();
             while (resultSet.next()) {
-                Long driverID = resultSet.getObject("id", Long.class);
+                Long driverId = resultSet.getObject("id", Long.class);
                 String driverName = resultSet.getObject("name", String.class);
                 String lisenceNumber = resultSet.getObject("lisence_number", String.class);
                 Driver driver = new Driver(driverName, lisenceNumber);
-                driver.setId(driverID);
+                driver.setId(driverId);
                 driverList.add(driver);
             }
             return driverList;
@@ -165,15 +165,14 @@ public class CarDaoJdbcImpl implements CarDao {
     }
 
     private Car getCar(ResultSet resultSet) throws SQLException {
-        Car car;
         Long id = resultSet.getObject("id", Long.class);
         String model = resultSet.getObject("model", String.class);
-        Long manufactureId = resultSet.getObject("id", Long.class);
+        Long manufactureId = resultSet.getObject("m.id", Long.class);
         String manufacturerName = resultSet.getObject("name", String.class);
         String manufacturerCountry = resultSet.getObject("country", String.class);
         Manufacturer manufacturer = new Manufacturer(manufacturerName, manufacturerCountry);
         manufacturer.setId(manufactureId);
-        car = new Car(model, manufacturer);
+        Car car = new Car(model, manufacturer);
         car.setId(id);
         return car;
     }

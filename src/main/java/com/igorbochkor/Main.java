@@ -28,32 +28,30 @@ public class Main {
         manufacturerService.delete(SECOND_INDEX);
 
         DriverService driverService = (DriverService) injector.getInstance(DriverService.class);
-        Driver driverTwo = new Driver("Bob", "CE");
+        final Driver driverTwo = new Driver("Bob", "CE");
         Driver driverThird = new Driver("Alice", "ABC");
-        driverService.create(driverThird);
-        System.out.println(driverService.get(SECOND_INDEX));
-        driverTwo.setId(SECOND_INDEX);
-        driverTwo.setName("Albert");
-        driverTwo.setLicenceNumber("B");
-        driverService.update(driverTwo);
-        driverService.delete(FIRST_INDEX);
+        Driver driverCreate = driverService.create(driverThird);
+        System.out.println(driverService.get(driverCreate.getId()));
+        driverCreate.setName("Albert");
+        driverCreate.setLicenceNumber("B");
+        driverService.update(driverCreate);
+        driverService.delete(driverCreate.getId());
         System.out.println(driverService.getAll());
 
         CarService carService = (CarService) injector.getInstance(CarService.class);
         Car carOne = new Car("Model S", manufacturerTesla);
-        Car carTwo = new Car("Volvo xc90", manufacturerVolvo);
+        final Car carTwo = new Car("Volvo xc90", manufacturerVolvo);
         Car carThree = new Car("V50", manufacturerVolvo);
         carService.create(carOne);
-        carTwo.setId(SECOND_INDEX);
         Car car = carService.create(carThree);
-        carTwo.setManufacturer(manufacturerVolvo);
-        carService.update(carTwo);
-        carService.delete(car.getId());
-        System.out.println(carService.get(FIRST_INDEX));
+        car.setManufacturer(manufacturerVolvo);
+        carService.update(car);
+        System.out.println(carService.get(car.getId()));
         carTwo.setManufacturer(manufacturerTesla);
         System.out.println(carService.update(carTwo));
         carService.addDriverToCar(driverTwo, carTwo);
         System.out.println(carService.getAll());
-        System.out.println(carService.getAllByDriver(SECOND_INDEX));
+        System.out.println(carService.getAllByDriver(driverTwo.getId()));
+        carService.delete(car.getId());
     }
 }

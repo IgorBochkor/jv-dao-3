@@ -42,11 +42,11 @@ public class DriverDaoJdbcImpl implements DriverDao {
                 = connection.prepareStatement(getQueryById)) {
             statement.setLong(1,driverId);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 driver = getDriver(resultSet);
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get manufacturer by id = "
+            throw new DataProcessingException("Can't get driver by id = "
                     + driverId, e);
         }
         return Optional.ofNullable(driver);
