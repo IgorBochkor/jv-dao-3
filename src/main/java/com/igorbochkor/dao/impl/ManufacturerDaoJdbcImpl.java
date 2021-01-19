@@ -39,7 +39,7 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
     public Optional<Manufacturer> get(Long manufacturerId) {
         Manufacturer manufacturer = null;
         String getByIdQuery = "SELECT * FROM manufactures "
-                + "WHERE manufacture_id = ? AND deleted = false";
+                + "WHERE id = ? AND deleted = false";
         try (Connection connection = ConnectionUtil.getConnection(); PreparedStatement statement
                 = connection.prepareStatement(getByIdQuery)) {
             statement.setLong(1, manufacturerId);
@@ -57,7 +57,7 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
         String updateByManufacturerQuery = "UPDATE manufactures SET name = ?, country = ? "
-                + "WHERE manufacture_id = ? AND deleted = FALSE";
+                + "WHERE id = ? AND deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection(); PreparedStatement statement
                 = connection.prepareStatement(updateByManufacturerQuery)) {
             statement.setString(1, manufacturer.getName());
@@ -73,7 +73,7 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
 
     @Override
     public boolean delete(Long manufacturerId) {
-        String deleteByIdQuery = "UPDATE manufactures SET deleted = TRUE WHERE manufacture_id = ?";
+        String deleteByIdQuery = "UPDATE manufactures SET deleted = TRUE WHERE id = ?";
         try (Connection connection = ConnectionUtil.getConnection(); PreparedStatement statement
                 = connection.prepareStatement(deleteByIdQuery)) {
             statement.setLong(1, manufacturerId);
@@ -103,7 +103,7 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
 
     private Manufacturer getManufacturer(ResultSet resultSet) throws SQLException {
         Manufacturer manufacturer;
-        Long manufacturerId = resultSet.getObject("manufacture_id", Long.class);
+        Long manufacturerId = resultSet.getObject("id", Long.class);
         String name = resultSet.getObject("name", String.class);
         String country = resultSet.getObject("country", String.class);
         manufacturer = new Manufacturer(name, country);

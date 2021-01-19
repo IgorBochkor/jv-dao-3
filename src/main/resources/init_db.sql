@@ -63,3 +63,12 @@ ADD CONSTRAINT `car_id_fk`
 ADD CONSTRAINT `driver_id_fk`
   FOREIGN KEY (`driver_id`)
   REFERENCES `taxi_service`.`drivers` (`driver_id`);
+
+  ALTER TABLE `taxi_service`.`cars`
+CHANGE COLUMN `car_id` `id` BIGINT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `taxi_service`.`drivers`
+CHANGE COLUMN `driver_id` `id` BIGINT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `taxi_service`.`manufactures`
+CHANGE COLUMN `manufacture_id` `id` BIGINT NOT NULL AUTO_INCREMENT ;
