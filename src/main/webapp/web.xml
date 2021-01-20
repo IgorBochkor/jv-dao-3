@@ -11,6 +11,56 @@
 
     <servlet-mapping>
         <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allDrivers</servlet-name>
+        <servlet-class>com.igorbochkor.controllers.GetAllDriversController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>allDrivers</servlet-name>
+        <url-pattern>/drivers/get/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addDrivers</servlet-name>
+        <servlet-class>com.igorbochkor.controllers.AddDriverController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addDrivers</servlet-name>
+        <url-pattern>/drivers/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addManufacturer</servlet-name>
+        <servlet-class>com.igorbochkor.controllers.AddManufacturerController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addManufacturer</servlet-name>
+        <url-pattern>/manufacturer/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addCar</servlet-name>
+        <servlet-class>com.igorbochkor.controllers.AddCarController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addCar</servlet-name>
+        <url-pattern>/car/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addDriverToCar</servlet-name>
+        <servlet-class>com.igorbochkor.controllers.AddDriverToCarController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addDriverToCar</servlet-name>
+        <url-pattern>/car/addDriver</url-pattern>
     </servlet-mapping>
 </web-app>

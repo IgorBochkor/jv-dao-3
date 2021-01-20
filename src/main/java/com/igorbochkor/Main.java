@@ -1,12 +1,6 @@
 package com.igorbochkor;
 
 import com.igorbochkor.lib.Injector;
-import com.igorbochkor.model.Car;
-import com.igorbochkor.model.Driver;
-import com.igorbochkor.model.Manufacturer;
-import com.igorbochkor.service.CarService;
-import com.igorbochkor.service.DriverService;
-import com.igorbochkor.service.ManufacturerService;
 
 public class Main {
     private static Injector injector = Injector.getInstance("com.igorbochkor");
@@ -15,7 +9,7 @@ public class Main {
     private static final Long THIRD_INDEX = 3L;
 
     public static void main(String[] args) {
-        ManufacturerService manufacturerService =
+        /*ManufacturerService manufacturerService =
                 (ManufacturerService) injector.getInstance(ManufacturerService.class);
         System.out.println(manufacturerService.get(FIRST_INDEX));
         final Manufacturer manufacturerTesla = manufacturerService.get(FIRST_INDEX);
@@ -52,6 +46,6 @@ public class Main {
         carService.addDriverToCar(driverTwo, carTwo);
         System.out.println(carService.getAll());
         System.out.println(carService.getAllByDriver(driverTwo.getId()));
-        carService.delete(car.getId());
+        carService.delete(car.getId());*/
     }
 }
