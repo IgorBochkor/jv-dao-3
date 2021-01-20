@@ -80,7 +80,7 @@ public class CarDaoJdbcImpl implements CarDao {
     }
 
     @Override
-    public List<Car> getAllCars() {
+    public List<Car> getAll() {
         List<Car> carList = new ArrayList<>();
         String getAllQueryById = "SELECT c.id, c.model, m.id,m.name, m.country "
                 + "FROM cars c "
