@@ -8,9 +8,9 @@
 
 <h4 style="color: brown">${message}</h4>
 
-<form method="post" action="${pageContext.request.contextPath}/car/add">
+<form method="post" action="${pageContext.request.contextPath}/cars/add">
     Please provide model: <input type="text" name="model">
-    Please provide manufacturerId: <input type="text" name="manufacturerId">
+    Please provide manufacturerId: <input type="number" name="manufacturerId">
 
     <button type="submit">Create car</button>
 </form>

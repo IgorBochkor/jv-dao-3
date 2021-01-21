@@ -8,7 +8,7 @@
 
 <h4 style="color: brown">${message}</h4>
 
-<form method="post" action="${pageContext.request.contextPath}/manufacturer/add">
+<form method="post" action="${pageContext.request.contextPath}/manufacturers/add">
     Please provide name: <input type="text" name="name">
     Please provide country: <input type="text" name="country">
 

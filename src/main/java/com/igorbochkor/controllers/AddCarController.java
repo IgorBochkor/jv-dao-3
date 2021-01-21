@@ -28,16 +28,11 @@ public class AddCarController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String model = req.getParameter("model");
-        String manufacturerIdString = req.getParameter("manufacturerId");
-        if (!model.isEmpty() && manufacturerIdString.matches("\\d+")) {
-            Long manufacturerId = Long.valueOf(manufacturerIdString);
-            resp.sendRedirect(req.getContextPath() + "/");
-            Manufacturer manufacturer = manufacturerService.get(manufacturerId);
-            Car car = new Car(model, manufacturer);
-            carService.create(car);
-        } else {
-            req.setAttribute("message", "Fill your correct data");
-            req.getRequestDispatcher("/WEB-INF/views/car/add.jsp").forward(req, resp);
-        }
+        Long manufacturerId = Long.valueOf(req.getParameter("manufacturerId"));
+        Manufacturer manufacturer = manufacturerService.get(manufacturerId);
+        Car car = new Car(model, manufacturer);
+        carService.create(car);
+        req.setAttribute("message", "Car was added to DB");
+        req.getRequestDispatcher("/WEB-INF/views/car/add.jsp").forward(req, resp);
     }
 }

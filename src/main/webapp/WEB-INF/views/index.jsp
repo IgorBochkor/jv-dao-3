@@ -7,12 +7,12 @@
 <h1>Make your choice</h1>
 <a href="drivers/add">Create driver</a>
 <br>
-<a href="drivers/get/all">Get all drivers</a>
+<a href="drivers/">Get all drivers</a>
 <br>
-<a href="manufacturer/add">Create manufacturer</a>
+<a href="manufacturers/add">Create manufacturer</a>
 <br>
-<a href="car/add">Create car</a>
+<a href="cars/add">Create car</a>
 <br>
-<a href="car/addDriver">Add driver to car</a>
+<a href="car/driver/add">Add driver to car</a>
 </body>
 </html>
