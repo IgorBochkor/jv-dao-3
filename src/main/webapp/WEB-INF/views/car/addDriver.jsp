@@ -6,6 +6,7 @@
 <body>
 <h1>Please provide information adding driver for car: Driver id and Car id</h1>
 
+<h4 style="color: brown">${message}</h4>
 
 <form method="post" action="${pageContext.request.contextPath}/car/addDriver">
     Please provide Driver id: <input type="text" name="driverId">

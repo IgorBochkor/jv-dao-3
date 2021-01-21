@@ -26,7 +26,7 @@ public class AddDriverController extends HttpServlet {
         String name = req.getParameter("name");
         String licenceNumber = req.getParameter("licenceNumber");
 
-        if (!name.isEmpty() || !licenceNumber.isEmpty()) {
+        if (!name.isEmpty() && !licenceNumber.isEmpty()) {
             resp.sendRedirect(req.getContextPath() + "/");
             Driver driver = new Driver(name, licenceNumber);
             driverService.create(driver);
