@@ -9,7 +9,9 @@
 <h4 style="color: brown">${message}</h4>
 <form method="post" action="${pageContext.request.contextPath}/drivers/add">
     Please provide name: <input type="text" name="name">
-    Please provide license number: <input type="text" name="licenceNumber">
+    license number: <input type="text" name="licenceNumber">
+    login: <input type="text" name="login">
+    password: <input type="password" name="password">
     <button type="submit">Create driver</button>
 </form>
 </body>

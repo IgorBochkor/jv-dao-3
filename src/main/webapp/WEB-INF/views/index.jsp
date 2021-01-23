@@ -13,6 +13,8 @@
 <br>
 <a href="cars/add">Create car</a>
 <br>
-<a href="car/driver/add">Add driver to car</a>
+<a href="cars/drivers/add">Add driver to car</a>
+<br>
+<a href="drivers/cars">Get all cars by current driver</a>
 </body>
 </html>
