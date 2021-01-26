@@ -16,6 +16,12 @@ public class Driver {
         this.password = password;
     }
 
+    public Driver(String name, String licenceNumber, String login) {
+        this.name = name;
+        this.licenceNumber = licenceNumber;
+        this.login = login;
+    }
+
     public String getLogin() {
         return login;
     }
@@ -66,12 +72,14 @@ public class Driver {
         }
         Driver driver = (Driver) o;
         return Objects.equals(name, driver.name)
-                && Objects.equals(licenceNumber, driver.licenceNumber);
+                && Objects.equals(licenceNumber, driver.licenceNumber)
+                && Objects.equals(login, driver.login)
+                && Objects.equals(password, driver.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, licenceNumber);
+        return Objects.hash(name, licenceNumber, login, password);
     }
 
     @Override
